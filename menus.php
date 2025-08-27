@@ -9,10 +9,11 @@
 /**
 * required setup
 */
-require_once( '../kernel/includes/setup_inc.php' );
+require_once '../kernel/includes/setup_inc.php';
 global $gBitSystem;
-require_once( NEXUS_PKG_PATH.'Nexus.php');
-include_once( NEXUS_PKG_INCLUDE_PATH.'menu_lookup_inc.php' );
+use Bitweaver\KernelTools;
+
+include_once NEXUS_PKG_INCLUDE_PATH.'menu_lookup_inc.php';
 
 $formfeedback = '';
 $gBitSystem->verifyPermission( 'p_nexus_create_menus' );
@@ -23,13 +24,13 @@ if( isset( $_REQUEST['action'] ) ) {
 	}
 
 	if( $_REQUEST['action'] == 'remove' ) {
-		$formHash['remove'] = TRUE;
+		$formHash['remove'] = true;
 		$formHash['menu_id'] = $menuId;
 		$msgHash = array(
-			'label' => tra('Delete Menu'),
+			'label' => KernelTools::tra('Delete Menu'),
 			'confirm_item' => $gNexus->mInfo['title'],
-			'warning' => tra('Remove this menu including all menu items associated with it.'),
-			'error' => tra('This cannot be undone!'),
+			'warning' => KernelTools::tra('Remove this menu including all menu items associated with it.'),
+			'error' => KernelTools::tra('This cannot be undone!'),
 		);
 		$gBitSystem->confirmDialog( $formHash,$msgHash );
 	}
@@ -41,17 +42,17 @@ if( isset( $_REQUEST['action'] ) ) {
 				$deadHtml .= '<li>'.$dead.'</li>';
 			}
 			$deadHtml .= '</ul>';
-			$formfeedback['warning'] = tra( 'Links that were dead and removed from ' ).": ".$gNexus->mInfo['title'].$deadHtml;
+			$formfeedback['warning'] = KernelTools::tra( 'Links that were dead and removed from ' ).": ".$gNexus->mInfo['title'].$deadHtml;
 		} else {
-			$formfeedback['success'] = tra( 'No dead links were found for this menu.' );
+			$formfeedback['success'] = KernelTools::tra( 'No dead links were found for this menu.' );
 		}
 	}
 
 	if( $_REQUEST['action'] == 'convert_structure' ) {
 		if( $gNexus->importStructure( $_REQUEST['structure_id'] ) ) {
-			$formfeedback['success'] = tra( 'The structure was successfully imported as menu.' );
+			$formfeedback['success'] = KernelTools::tra( 'The structure was successfully imported as menu.' );
 		} else {
-			$gBitSystem->fatalError( tra("There was an error importing the structure ").vc( $gNexus->mErrors ));
+			$gBitSystem->fatalError( KernelTools::tra("There was an error importing the structure ").\Bitweaver\vc( $gNexus->mErrors ));
 		}
 	}
 }
@@ -61,7 +62,7 @@ if( isset( $_REQUEST['confirm'] ) ) {
 		header ("Location: ".NEXUS_PKG_URL."menus.php");
 		die;
 	} else {
-		$gBitSystem->fatalError( tra("There was an error deleting the menu ").vc( $gNexus->mErrors ));
+		$gBitSystem->fatalError( KernelTools::tra("There was an error deleting the menu ").\Bitweaver\vc( $gNexus->mErrors ));
 	}
 }
 
@@ -73,7 +74,7 @@ if( isset( $_REQUEST['store_menu'] ) ) {
 		die;
 	}
 	$gNexus->load();
-	$formfeedback['success'] = tra( "The following menu was updated successfully" ).": ".$gNexus->mInfo['title'] ;
+	$formfeedback['success'] = KernelTools::tra( "The following menu was updated successfully" ).": ".$gNexus->mInfo['title'] ;
 }
 
 $gBitSmarty->assign( 'menuList', $menuList = $gNexus->getMenuList() );
@@ -82,10 +83,10 @@ $gBitSmarty->assign( 'formfeedback', $formfeedback );
 // options only available if there is a top bar menu
 if( is_file( TEMP_PKG_PATH.'nexus/modules/top_bar_inc.tpl' ) ) {
 	// if the top bar is set and we don't need it, remove it.
-	$nuke_top_bar = TRUE;
+	$nuke_top_bar = true;
 	foreach( $menuList as $menu ) {
 		if(  $menu['plugin_guid'] == NEXUS_PLUGIN_GUID_SUCKERFISH && $menu['menu_type'] == 'hor'  ) {
-			$nuke_top_bar = FALSE;
+			$nuke_top_bar = false;
 		}
 	}
 
@@ -95,5 +96,4 @@ if( is_file( TEMP_PKG_PATH.'nexus/modules/top_bar_inc.tpl' ) ) {
 }
 
 $gBitSystem->setBrowserTitle( 'Nexus Menus' );
-$gBitSystem->display( 'bitpackage:nexus/menus.tpl' , NULL, array( 'display_mode' => 'display' ));
-?>
+$gBitSystem->display( 'bitpackage:nexus/menus.tpl' , null, array( 'display_mode' => 'display' ));

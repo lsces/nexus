@@ -13,7 +13,9 @@
 /**
  * Setup
  */
-require_once( LIBERTY_PKG_CLASS_PATH.'LibertySystem.php' );
+namespace Bitweaver\Nexus;
+use Bitweaver\Liberty\LibertySystem;
+
 define( 'NEXUS_DEFAULT_MENU', 'suckerfish' );
 
 /**
@@ -32,12 +34,11 @@ class NexusSystem extends LibertySystem {
 	 * @access public
 	 * @return void
 	 */
-	function NexusSystem() {
+	public function NexusSystem() {
 		// Set the package using LibertySystem
 		$this->mSystem     = NEXUS_PKG_NAME;
 		$this->mPluginPath = NEXUS_PKG_PATH."plugins/";
 
-		parent::__construct( FALSE );
+		parent::__construct( false );
 	}
 }
-?>

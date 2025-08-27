@@ -18,7 +18,7 @@ global $gNexusSystem;
 define( 'NEXUS_PLUGIN_GUID_SUCKERFISH', 'suckerfish' );
 
 $pluginParams = array(
-	'auto_activate'        => TRUE,
+	'auto_activate'        => true,
 	'write_cache_function' => 'write_suckerfish_cache',
 	'title'                => 'Suckerfish Menus',
 	'description'          => 'Sophisticated and flexible CSS driven dropdown menus',
@@ -46,13 +46,13 @@ function write_suckerfish_cache( $pMenuHash ) {
 	$menu_name = strtolower( $menu_name );
 
 	$menu_file = $pMenuHash->mInfo['cache']['file'];
-	$data = '{bitmodule title="{tr}'.$pMenuHash->mInfo['title'].'{/tr}" name="'.$menu_name.'" classplus="nexus-menu"}';
+	$data = '{bitmodule title="'.$pMenuHash->mInfo['title'].'" name="'.$menu_name.'" classplus="nexus-menu"}';
 	$data .= '<div class="suckerfish">';
 
 	// if a permission has been set, we need to work out when to close the {if} clause
-	$permCloseIds = array();
-	$perm_close = FALSE;
-	$next_cycle = FALSE;
+	$permCloseIds = [];
+	$perm_close = false;
+	$next_cycle = false;
 	$menu_id = 'nexus'.$pMenuHash->mInfo['menu_id'].'-{$moduleParams.layout_area}{$moduleParams.pos}';
 
 	foreach( $pMenuHash->mInfo['tree'] as $key => $item ) {
@@ -67,14 +67,14 @@ function write_suckerfish_cache( $pMenuHash ) {
 			// close permission clauses
 			if( $next_cycle ) {
 				$data .= '{/if}';
-				$next_cycle = FALSE;
+				$next_cycle = false;
 			}
 			if( in_array( $item['item_id'], $permCloseIds ) ) {
-				$next_cycle = TRUE;
+				$next_cycle = true;
 			}
 			if( $perm_close ) {
 				$data .= '{/if}';
-				$perm_close = FALSE;
+				$perm_close = false;
 			}
 		}
 
@@ -85,7 +85,7 @@ function write_suckerfish_cache( $pMenuHash ) {
 				// open permission if clause
 				$data .= '{if $gBitUser->hasPermission("'.$item['perm'].'")}';
 				if( !$item['head'] ) {
-					$perm_close = TRUE;
+					$perm_close = true;
 				} else {
 					$permCloseIds[] = $item['item_id'];
 				}
@@ -100,7 +100,6 @@ function write_suckerfish_cache( $pMenuHash ) {
 		}
 	}
 
-	$data .= '<!--[if lt IE 8]><script type="text/javascript">BitBase.fixIEDropMenu("'.$menu_id.'");</script><![endif]-->';
 	$data .= '<div class="clear"></div>';
 	$data .= '</div>';
 	$data .= '{/bitmodule}';

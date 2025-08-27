@@ -17,7 +17,7 @@ global $gNexusSystem;
 define( 'NEXUS_PLUGIN_GUID_TIKIWIKI', 'tikiwiki' );
 
 $pluginParams = array(
-	'auto_activate'        => TRUE,
+	'auto_activate'        => true,
 	'write_cache_function' => 'write_tikiwiki_cache',
 	'title'                => 'TikiWiki menus',
 	'description'          => 'expandable menu reminiscent of the tikiwiki menu',
@@ -47,12 +47,12 @@ function write_tikiwiki_cache( $pMenuHash ) {
 	$menu_name = preg_replace( "/ +/", "_", trim( $pMenuHash->mInfo['title'] ) );
 	$menu_name = strtolower( $menu_name );
 	$menu_file = $pMenuHash->mInfo['cache']['file'];
-	$data = '{bitmodule title="{tr}'.$pMenuHash->mInfo['title'].'{/tr}" name="'.$menu_name.'"}';
+	$data = '{bitmodule title="'.$pMenuHash->mInfo['title'].'" name="'.$menu_name.'"}';
 	$data .= '<div class="tikiwiki menu">';
 	// if a permission has been set, we need to work out when to close the {if} clause
-	$permCloseIds = array();
-	$perm_close = FALSE;
-	$perm_cycle = FALSE;
+	$permCloseIds = [];
+	$perm_close = false;
+	$perm_cycle = false;
 	$type = $pMenuHash->mInfo['menu_type'];
 	foreach( $pMenuHash->mInfo['tree'] as $key => $item ) {
 		if( $item['first'] ) {
@@ -61,14 +61,14 @@ function write_tikiwiki_cache( $pMenuHash ) {
 			// close permission clauses
 			if( $perm_cycle ) {
 				$data .= '{/if}';
-				$perm_cycle = FALSE;
+				$perm_cycle = false;
 			}
 			if( in_array( $item['item_id'], $permCloseIds ) ) {
-				$perm_cycle = TRUE;
+				$perm_cycle = true;
 			}
 			if( $perm_close ) {
 				$data .= '{/if}';
-				$perm_close = FALSE;
+				$perm_close = false;
 			}
 		}
 		if( $item['last'] ) {
@@ -78,7 +78,7 @@ function write_tikiwiki_cache( $pMenuHash ) {
 				// open permission if clause
 				$data .= '{if $gBitUser->hasPermission("'.$item['perm'].'")}';
 				if( !$item['head'] ) {
-					$perm_close = TRUE;
+					$perm_close = true;
 				} else {
 					$permCloseIds[] = $item['item_id'];
 				}
@@ -101,7 +101,7 @@ function write_tikiwiki_cache( $pMenuHash ) {
 	$data .= '</div><!-- end .menu -->';
 
 	// apply state of expandable menus
-	$data .= '<script type="text/javascript">';
+	$data .= '<script>';
 	foreach( $pMenuHash->mInfo['tree'] as $key => $item ) {
 		if( $item['first'] ) {
 			$togid = 'togid'.$item['item_id'];

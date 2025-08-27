@@ -9,18 +9,19 @@
 /**
 * required setup
 */
-require_once( '../kernel/includes/setup_inc.php' );
-require_once( NEXUS_PKG_PATH.'Nexus.php');
-include_once( NEXUS_PKG_INCLUDE_PATH.'menu_lookup_inc.php' );
+namespace Bitweaver\Liberty;
+require_once '../kernel/includes/setup_inc.php';
+use Bitweaver\KernelTools;
+include_once NEXUS_PKG_INCLUDE_PATH.'menu_lookup_inc.php';
 
 $gBitSystem->verifyPermission( 'p_nexus_create_menus' );
 
 if( empty( $_REQUEST['menu_id'] ) ) {
-	bit_redirect( NEXUS_PKG_URL.'index.php' );
+	KernelTools::bit_redirect( NEXUS_PKG_URL.'index.php' );
 }
 
 // get content and pass it on
-include_once( LIBERTY_PKG_INCLUDE_PATH.'get_content_list_inc.php' );
+include_once LIBERTY_PKG_INCLUDE_PATH.'get_content_list_inc.php';
 $gBitSmarty->assign( 'contentSelect', $contentSelect );
 $gBitSmarty->assign( 'contentTypes', $contentTypes );
 
@@ -37,23 +38,23 @@ if( isset( $_REQUEST['store_item'] ) ) {
 	} else {
 		$formfeedback['error'] = $gNexus->mErrors;
 	}
-	bit_redirect( NEXUS_PKG_URL.'menu_items.php?menu_id='.$_REQUEST['menu_id'] );
+	KernelTools::bit_redirect( NEXUS_PKG_URL.'menu_items.php?menu_id='.$_REQUEST['menu_id'] );
 }
 
 if( isset( $_REQUEST['remove_item'] ) && is_array( $_REQUEST['remove_item'] ) ) {
 	foreach( $_REQUEST['remove_item'] as $rem_id ) {
-		if( $delItem = $gNexus->expungeItem( $rem_id, FALSE ) ) {
+		if( $delItem = $gNexus->expungeItem( $rem_id, false ) ) {
 			$delList[] = $delItem['title'];
 		} else {
 			$formfeedback['error'] = $gNexus->mErrors;
 		}
 	}
 	if( !empty( $delList ) ) {
-		$formfeedback['success'] = tra( 'The following items were successfully removed from the menu' ).': ';
+		$formfeedback['success'] = KernelTools::tra( 'The following items were successfully removed from the menu' ).': ';
 		$gBitSmarty->assign( 'delList', $delList );
 	}
 	$gNexus->writeMenuCache();
-	bit_redirect( NEXUS_PKG_URL.'menu_items.php?menu_id='.$_REQUEST['menu_id'] );
+	KernelTools::bit_redirect( NEXUS_PKG_URL.'menu_items.php?menu_id='.$_REQUEST['menu_id'] );
 }
 
 if( !empty( $_REQUEST['item_id'] ) ) {
@@ -71,11 +72,8 @@ if( isset( $formfeedback ) ) {
 }
 
 // get all available perms only when the admin is visiting here.
-if( $gBitUser->isAdmin() ) {
-	$tmpPerms = $gBitUser->getGroupPermissions();
-} else {
-	$tmpPerms = $gBitUser->mPerms;
-}
+$tmpPerms = $gBitUser->isAdmin() ? $gBitUser->getGroupPermissions() : $gBitUser->mPerms;
+
 $perms['no permission'][''] = 'none';
 foreach( $tmpPerms as $perm => $info ) {
 	$perms[$info['package']][$perm] = $perm;
@@ -83,18 +81,18 @@ foreach( $tmpPerms as $perm => $info ) {
 $gBitSmarty->assign( 'perms', $perms );
 
 // get a list of available resource types
-$rsrcTypes = array(
+$rsrcTypes = [
 	'internal' => 'URL',
 	'external' => 'URL',
 	'content_id' => 'Content ID',
 	'structure_id' => 'Structure ID',
 	//'menu_id' => 'Menu ID',
 //	'gallery_list' => 'Gallery List', // this is not in use yet - xing
-);
+];
 $gBitSmarty->assign( 'rsrcTypes', $rsrcTypes );
 
 // get all available menus that can be included
-$menuHashList = array();
+$menuHashList = [];
 $menuList[''] = '';
 $menuHashList = $gNexus->getMenuList();
 foreach( $menuHashList as $menu ) {
@@ -106,5 +104,4 @@ if( count( $menuList ) > 1 ) {
 	$gBitSmarty->assign( 'menuList', $menuList );
 }
 
-$gBitSystem->display( 'bitpackage:nexus/menu_items.tpl' , 'Nexus Menus', array( 'display_mode' => 'display' ));
-?>
+$gBitSystem->display( 'bitpackage:nexus/menu_items.tpl' , 'Nexus Menus', [ 'display_mode' => 'display' ]);

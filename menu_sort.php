@@ -9,10 +9,11 @@
 /**
 * required setup
 */
-require_once( '../kernel/includes/setup_inc.php' );
+require_once '../kernel/includes/setup_inc.php';
 global $gBitSystem;
-require_once( NEXUS_PKG_PATH.'Nexus.php');
-include_once( NEXUS_PKG_INCLUDE_PATH.'menu_lookup_inc.php' );
+use Bitweaver\Nexus\Nexus;
+
+include_once NEXUS_PKG_INCLUDE_PATH.'menu_lookup_inc.php';
 
 $gBitSystem->verifyPermission( 'p_nexus_create_menus' );
 
@@ -43,5 +44,4 @@ if( isset( $_REQUEST['tab'] ) ) {
 $gBitSmarty->assign( 'nexus_file', strtolower( 'mod_'.preg_replace( "/ /", "_", $gNexus->mInfo['title'] ).'_'.$gNexus->mInfo['menu_id'].'.tpl' ) );
 
 $gBitSystem->setBrowserTitle( 'Nexus Menus' );
-$gBitSystem->display( 'bitpackage:nexus/menu_sort.tpl' , NULL, array( 'display_mode' => 'display' ));
-?>
+$gBitSystem->display( 'bitpackage:nexus/menu_sort.tpl' , null, array( 'display_mode' => 'display' ));

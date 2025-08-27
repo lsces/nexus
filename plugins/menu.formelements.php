@@ -18,7 +18,7 @@ global $gNexusSystem;
 define( 'NEXUS_PLUGIN_GUID_FORMELEMENTSMENU', 'formelements' );
 
 $pluginParams = array(
-	'auto_activate'        => FALSE,
+	'auto_activate'        => false,
 	'write_cache_function' => 'write_form_menu_cache',
 	'title'                => 'Formelements menu',
 	'description'          => 'Menus using form elements',
@@ -50,15 +50,15 @@ function write_form_menu_cache( $pMenuHash ) {
 	$menu_name = strtolower( $menu_name );
 	$menu_file = $pMenuHash->mInfo['cache']['file'];
 	if ( $pMenuHash->mInfo['menu_type'] != 'qdd' ) {
-		$data = '{bitmodule title="{tr}'.$pMenuHash->mInfo['title'].'{/tr}" name="'.$menu_name.'"}';
+		$data = '{bitmodule title="'.$pMenuHash->mInfo['title'].'" name="'.$menu_name.'"}';
 	}
 	else {
 		$data = '{bitmodule name="'.$menu_name.'"}';
 	}
 	// if a permission has been set, we need to work out when to close the {if} clause
-	$permCloseIds = array();
-	$perm_close = FALSE;
-	$next_cycle = FALSE;
+	$permCloseIds = [];
+	$perm_close = false;
+	$next_cycle = false;
 	foreach( $pMenuHash->mInfo['tree'] as $key => $item ) {
 		if( !empty( $item['perm'] ) ) {
 			$perm_open = '{if $gBitUser->hasPermission("'.$item['perm'].'")}';
@@ -94,14 +94,14 @@ function write_form_menu_cache( $pMenuHash ) {
 			// close permission clauses
 			if( $next_cycle ) {
 				$data .= '{/if}';
-				$next_cycle = FALSE;
+				$next_cycle = false;
 			}
 			if( in_array( $item['item_id'], $permCloseIds ) ) {
-				$next_cycle = TRUE;
+				$next_cycle = true;
 			}
 			if( $perm_close ) {
 				$data .= '{/if}';
-				$perm_close = FALSE;
+				$perm_close = false;
 			}
 		}
 		if( $item['last'] ) {
@@ -115,7 +115,7 @@ function write_form_menu_cache( $pMenuHash ) {
 				// open permission if clause
 				$data .= $perm_open;
 				if( !$item['head'] ) {
-					$perm_close = TRUE;
+					$perm_close = true;
 				} else {
 					$permCloseIds[] = $item['item_id'];
 				}

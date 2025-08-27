@@ -4,7 +4,7 @@ require_once( NEXUS_PKG_PATH.'Nexus.php');
 $gNexus = new Nexus();
 $gNexusSystem->scanAllPlugins( NEXUS_PKG_PATH.'plugins/' );
 
-$feedback = array();
+$feedback = [];
 
 if( !empty( $_REQUEST['rewrite_cache'] ) ) {
 	if( $gNexus->rewriteMenuCache() ) {

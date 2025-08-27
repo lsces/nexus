@@ -7,15 +7,17 @@
  */
 global $gNexus;
 
-if( @BitBase::verifyId( $_REQUEST['menu_id'] ) ) {
+use Bitweaver\Nexus\Nexus;
+use Bitweaver\BitBase;
+
+if( BitBase::verifyId( $_REQUEST['menu_id'] ?? 0 ) ) {
 	$menuId = $_REQUEST['menu_id'];
 	$gNexus = new Nexus( $menuId );
 } else {
 	$gNexus = new Nexus();
-	$menuId = NULL;
+	$menuId = null;
 }
 $gNexus -> load();
 
-$gBitSmarty->assignByRef( 'gNexus', $gNexus );
-$gBitSmarty->assignByRef( 'menuId', $menuId );
-?>
+$gBitSmarty->assign( 'gNexus', $gNexus );
+$gBitSmarty->assign( 'menuId', $menuId );
