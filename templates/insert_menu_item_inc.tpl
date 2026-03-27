@@ -1,10 +1,10 @@
 {strip}
-{if $gBitUser->hasPermission( 'p_nexus_insert_item' ) and $nexusList}
+{if $gBitUser->hasPermission( 'p_nexus_insert_item' ) && $nexusList}
 	{jstab title="Menu"}
 		{legend legend="Insert in Menu"}
 			{if !$inNexusMenu}
 				{foreach from=$nexusList item=menu}
-					{if $menu.editable or $gBitUser->isAdmin()}
+					{if $menu.editable || $gBitUser->isAdmin()}
 						<div class="form-group">
 							{formlabel label="Menu"}
 							{forminput}

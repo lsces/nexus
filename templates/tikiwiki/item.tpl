@@ -3,11 +3,11 @@
 	{if $item.head}head{else}item{/if}{if $item.rsrc_type eq 'ext'} external{/if}{if $item.rsrc_type eq 'content_id'}{ldelim}if $gContent->mContentId == {$item.rsrc}{rdelim} selected{ldelim}/if{rdelim}{/if}
 {/capture}
 
-{if $type eq 'ieo' or $type eq 'iec'}
+{if $type eq 'ieo' || $type eq 'iec'}
 	<span style="display:block;">
 		{if $item.expand_url}
 			<a style="float:left;padding:0 3px;" href="{$item.expand_url}">
-				{ldelim}if $smarty.cookies.{$tog_next} == 'c' or (!$smarty.cookies.{$tog_next} and '{$type}' == 'iec'){rdelim}
+				{ldelim}if $smarty.cookies.{$tog_next} == 'c' || (!$smarty.cookies.{$tog_next} and '{$type}' == 'iec'){rdelim}
 					{biticon ipackage="liberty" iname="collapsed" id="`$tog_next`img" iexplain="Collapsed menu"}
 				{ldelim}else{rdelim}
 					{biticon ipackage="liberty" iname="expanded" id="`$tog_next`img" iexplain="Expanded menu"}
@@ -19,11 +19,11 @@
 			{$item.title|escape}
 		</a>
 	</span>
-{elseif $type eq 'iho' or $type eq 'ihc'}
+{elseif $type eq 'iho' || $type eq 'ihc'}
 	<span style="display:block;">
 		{if $item.expand_url}
 			<a style="float:left;padding:0 3px;" href="{$item.expand_url}">
-				{ldelim}if $smarty.cookies.{$tog_next} == 'c' or (!$smarty.cookies.{$tog_next} and '{$type}' == 'ihc'){rdelim}
+				{ldelim}if $smarty.cookies.{$tog_next} == 'c' || (!$smarty.cookies.{$tog_next} and '{$type}' == 'ihc'){rdelim}
 					{biticon ipackage="liberty" iname="collapsed" id="`$tog_next`img" iexplain="Collapsed menu"}
 				{ldelim}else{rdelim}
 					{biticon ipackage="liberty" iname="expanded" id="`$tog_next`img" iexplain="Expanded menu"}

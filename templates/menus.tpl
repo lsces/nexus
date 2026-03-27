@@ -48,7 +48,7 @@
 						{if $plugin.is_active eq 'y'}
 							<label>
 								<input type="radio" name="plugin_guid" value="{$plugin.plugin_guid}"
-									{if $editMenu.plugin_guid eq $plugin.plugin_guid or ( $editMenu.plugin_guid eq '' and $plugin.plugin_guid eq 'suckerfish' )}
+									{if $editMenu.plugin_guid eq $plugin.plugin_guid || ( $editMenu.plugin_guid eq '' && $plugin.plugin_guid eq 'suckerfish' )}
 										checked="checked"
 									{/if}
 								/> {$plugin.title}
