@@ -16,7 +16,7 @@ global $gNexusSystem;
 // GUID should be a maximum of 16 chars
 define( 'NEXUS_PLUGIN_GUID_TIKIWIKI', 'tikiwiki' );
 
-$pluginParams = array(
+$pluginParams = [
 	'auto_activate'        => true,
 	'write_cache_function' => 'write_tikiwiki_cache',
 	'title'                => 'TikiWiki menus',
@@ -25,15 +25,15 @@ $pluginParams = array(
 	'browser_requirements' => 'Most browsers that support javascript should support these menus.',
 	'edit_label'           => 'TikiWiki menus',
 	'plugin_type'          => 'nexus_plugin',
-	'menu_types'           => array(
-		'heo' => array( 'label' => 'head expands - open',               'note' => 'Head item serves merely as container and clicking on it will expand the underlying items (initial setting is open).' ),
-		'iho' => array( 'label' => 'head expands (with icon) - open',   'note' => 'Head item serves merely as container and clicking on it will expand the underlying items (initial setting is open). Displays an icon along with it.' ),
-		'hec' => array( 'label' => 'head expands - closed',             'note' => 'Initial setting is closed.' ),
-		'ihc' => array( 'label' => 'head expands (with icon) - closed', 'note' => 'Initial setting is closed. Displays an icon along with it.' ),
-		'ieo' => array( 'label' => 'icon expands - open',               'note' => 'Menu head item serves as link and there is an icon to expand the menu (initial setting is open).' ),
-		'iec' => array( 'label' => 'icon expands - closed',             'note' => 'Initial setting is closed.' ),
-	),
-);
+	'menu_types'           => [
+		'heo' => [ 'label' => 'head expands - open',               'note' => 'Head item serves merely as container and clicking on it will expand the underlying items (initial setting is open).' ],
+		'iho' => [ 'label' => 'head expands (with icon) - open',   'note' => 'Head item serves merely as container and clicking on it will expand the underlying items (initial setting is open). Displays an icon along with it.' ],
+		'hec' => [ 'label' => 'head expands - closed',             'note' => 'Initial setting is closed.' ],
+		'ihc' => [ 'label' => 'head expands (with icon) - closed', 'note' => 'Initial setting is closed. Displays an icon along with it.' ],
+		'ieo' => [ 'label' => 'icon expands - open',               'note' => 'Menu head item serves as link and there is an icon to expand the menu (initial setting is open).' ],
+		'iec' => [ 'label' => 'icon expands - closed',             'note' => 'Initial setting is closed.' ],
+	],
+];
 
 $gNexusSystem->registerPlugin( NEXUS_PLUGIN_GUID_TIKIWIKI, $pluginParams );
 

@@ -14,6 +14,7 @@
  * Setup
  */
 namespace Bitweaver\Nexus;
+
 use Bitweaver\Liberty\LibertySystem;
 
 define( 'NEXUS_DEFAULT_MENU', 'suckerfish' );

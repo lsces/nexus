@@ -10,6 +10,7 @@
 * required setup
 */
 namespace Bitweaver\Liberty;
+
 require_once '../kernel/includes/setup_inc.php';
 use Bitweaver\KernelTools;
 include_once NEXUS_PKG_INCLUDE_PATH.'menu_lookup_inc.php';

@@ -19,9 +19,9 @@ $pRegisterHash = [
 define( 'NEXUS_PKG_NAME', $pRegisterHash['package_name'] );
 define( 'NEXUS_PKG_URL', BIT_ROOT_URL . basename( $pRegisterHash['package_path'] ) . '/' );
 define( 'NEXUS_PKG_PATH', BIT_ROOT_PATH . basename( $pRegisterHash['package_path'] ) . '/' );
-define( 'NEXUS_PKG_INCLUDE_PATH', BIT_ROOT_PATH . basename( $pRegisterHash['package_path'] ) . '/includes/'); 
+define( 'NEXUS_PKG_INCLUDE_PATH', BIT_ROOT_PATH . basename( $pRegisterHash['package_path'] ) . '/includes/');
 define( 'NEXUS_PKG_CLASS_PATH', BIT_ROOT_PATH . basename( $pRegisterHash['package_path'] ) . '/includes/classes/');
-define( 'NEXUS_PKG_ADMIN_PATH', BIT_ROOT_PATH . basename( $pRegisterHash['package_path'] ) . '/admin/'); 
+define( 'NEXUS_PKG_ADMIN_PATH', BIT_ROOT_PATH . basename( $pRegisterHash['package_path'] ) . '/admin/');
 
 $gBitSystem->registerPackage( $pRegisterHash );
 
@@ -41,12 +41,12 @@ if( $gBitSystem->isPackageActive( 'nexus' ) ) {
 	// include service functions
 	require_once NEXUS_PKG_INCLUDE_PATH.'servicefunctions_inc.php';
 
-	$gLibertySystem->registerService( LIBERTY_SERVICE_MENU, NEXUS_PKG_NAME, array(
+	$gLibertySystem->registerService( LIBERTY_SERVICE_MENU, NEXUS_PKG_NAME, [
 		'content_store_function'   => 'nexus_content_store',
 		'content_edit_function'    => 'nexus_content_edit',
 		'content_preview_function' => 'nexus_content_preview',
 		'content_edit_tab_tpl'     => 'bitpackage:nexus/insert_menu_item_inc.tpl',
-	) );
+	] );
 
 	if( $gBitUser->hasPermission( 'p_nexus_create_menus' ) ) {
 		$menuHash = [

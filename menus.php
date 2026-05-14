@@ -26,12 +26,12 @@ if( isset( $_REQUEST['action'] ) ) {
 	if( $_REQUEST['action'] == 'remove' ) {
 		$formHash['remove'] = true;
 		$formHash['menu_id'] = $menuId;
-		$msgHash = array(
+		$msgHash = [
 			'label' => KernelTools::tra('Delete Menu'),
 			'confirm_item' => $gNexus->mInfo['title'],
 			'warning' => KernelTools::tra('Remove this menu including all menu items associated with it.'),
 			'error' => KernelTools::tra('This cannot be undone!'),
-		);
+		];
 		$gBitSystem->confirmDialog( $formHash,$msgHash );
 	}
 
@@ -61,9 +61,9 @@ if( isset( $_REQUEST['confirm'] ) ) {
 	if( $gNexus->expungeMenu( $menuId ) ) {
 		header ("Location: ".NEXUS_PKG_URL."menus.php");
 		die;
-	} else {
-		$gBitSystem->fatalError( KernelTools::tra("There was an error deleting the menu ").\Bitweaver\vc( $gNexus->mErrors ));
 	}
+		$gBitSystem->fatalError( KernelTools::tra("There was an error deleting the menu ").\Bitweaver\vc( $gNexus->mErrors ));
+
 }
 
 if( isset( $_REQUEST['store_menu'] ) ) {
@@ -96,4 +96,4 @@ if( is_file( TEMP_PKG_PATH.'nexus/modules/top_bar_inc.tpl' ) ) {
 }
 
 $gBitSystem->setBrowserTitle( 'Nexus Menus' );
-$gBitSystem->display( 'bitpackage:nexus/menus.tpl' , null, array( 'display_mode' => 'display' ));
+$gBitSystem->display( 'bitpackage:nexus/menus.tpl' , null, [ 'display_mode' => 'display' ]);

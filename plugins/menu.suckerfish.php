@@ -17,7 +17,7 @@ global $gNexusSystem;
 // GUID should be a maximum of 16 chars
 define( 'NEXUS_PLUGIN_GUID_SUCKERFISH', 'suckerfish' );
 
-$pluginParams = array(
+$pluginParams = [
 	'auto_activate'        => true,
 	'write_cache_function' => 'write_suckerfish_cache',
 	'title'                => 'Suckerfish Menus',
@@ -26,12 +26,12 @@ $pluginParams = array(
 	'browser_requirements' => 'Many modern browsers support suckerfish menus inherently using CSS.',
 	'edit_label'           => 'CSS based menus',
 	'plugin_type'          => 'nexus_plugin',
-	'menu_types'           => array(
-		'nor' => array( 'label' => 'Normal',     'note' => 'Nested list of menu items using "ul" and "li" HTML tags.' ),
-		'ver' => array( 'label' => 'Vertical',   'note' => 'Vertical dropdown menu that usually resides in one of the side modules.' ),
-		'hor' => array( 'label' => 'Horizontal', 'note' => 'Horizontal menu which you can use to insert in or replace the top menu bar.' ),
-	),
-);
+	'menu_types'           => [
+		'nor' => [ 'label' => 'Normal',     'note' => 'Nested list of menu items using "ul" and "li" HTML tags.' ],
+		'ver' => [ 'label' => 'Vertical',   'note' => 'Vertical dropdown menu that usually resides in one of the side modules.' ],
+		'hor' => [ 'label' => 'Horizontal', 'note' => 'Horizontal menu which you can use to insert in or replace the top menu bar.' ],
+	],
+];
 
 $gNexusSystem->registerPlugin( NEXUS_PLUGIN_GUID_SUCKERFISH, $pluginParams );
 

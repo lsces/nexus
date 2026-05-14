@@ -1,6 +1,6 @@
 <?php
 
-$tables = [ 
+$tables = [
 'nexus_menus' => "
 	menu_id I4 AUTO PRIMARY,
 	plugin_guid C(16) NOTNULL,
@@ -30,18 +30,18 @@ foreach( array_keys( $tables ) AS $tableName ) {
 	$gBitInstaller->registerSchemaTable( NEXUS_PKG_NAME, $tableName, $tables[$tableName] );
 }
 
-$gBitInstaller->registerPackageInfo( NEXUS_PKG_NAME, [ 
+$gBitInstaller->registerPackageInfo( NEXUS_PKG_NAME, [
 	'description' => 'Nexus allows you to create multi level menus using a simple and intuitive interface. Menus can be of a dropdown style using css.',
 	'license' => '<a href="http://www.gnu.org/licenses/licenses.html#LGPL">LGPL</a>',
 ] );
 
 // ### Default UserPermissions
-$gBitInstaller->registerUserPermissions( NEXUS_PKG_NAME, [ 
+$gBitInstaller->registerUserPermissions( NEXUS_PKG_NAME, [
 	[ 'p_nexus_insert_item', 'Can insert menu item in a menu while editing a page', 'registered', NEXUS_PKG_NAME],
 	[ 'p_nexus_create_menus', 'Can create new menus using Nexus', 'editors', NEXUS_PKG_NAME],
 ] );
 
 // ### Default Preferences
-$gBitInstaller->registerPreferences( NEXUS_PKG_NAME, [ 
+$gBitInstaller->registerPreferences( NEXUS_PKG_NAME, [
 	[  NEXUS_PKG_NAME, 'nexus_menu_text', 'Menus' ],
 ] );

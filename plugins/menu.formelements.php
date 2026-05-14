@@ -17,7 +17,7 @@ global $gNexusSystem;
 */
 define( 'NEXUS_PLUGIN_GUID_FORMELEMENTSMENU', 'formelements' );
 
-$pluginParams = array(
+$pluginParams = [
 	'auto_activate'        => false,
 	'write_cache_function' => 'write_form_menu_cache',
 	'title'                => 'Formelements menu',
@@ -27,14 +27,14 @@ $pluginParams = array(
 	'edit_label'           => 'Menus using form elements',
 	'include_js_in_head'   => '/nexus/plugins/menu.formelements.js',
 	'plugin_type'          => 'nexus_plugin',
-	'menu_types'           => array(
-		'sdd' => array( 'label' => 'Standard DropDown', 'note' => 'drop-down menu using select with menu name on top' ),
-		'qdd' => array( 'label' => 'Quick DropDown',    'note' => 'drop-down menu using select with menu name in drop-down select box'),
-		's3'  => array( 'label' => '3-Line Box',        'note' => 'select menu with 3 lines showing' ),
-		's5'  => array( 'label' => '5-Line Box',        'note' => 'select menu with 5 lines showing' ),
-		'sal' => array( 'label' => 'Full Text Box',     'note' => 'select menu with all menu items showing' ),
-	),
-);
+	'menu_types'           => [
+		'sdd' => [ 'label' => 'Standard DropDown', 'note' => 'drop-down menu using select with menu name on top' ],
+		'qdd' => [ 'label' => 'Quick DropDown',    'note' => 'drop-down menu using select with menu name in drop-down select box'],
+		's3'  => [ 'label' => '3-Line Box',        'note' => 'select menu with 3 lines showing' ],
+		's5'  => [ 'label' => '5-Line Box',        'note' => 'select menu with 5 lines showing' ],
+		'sal' => [ 'label' => 'Full Text Box',     'note' => 'select menu with all menu items showing' ],
+	],
+];
 
 $gNexusSystem->registerPlugin( NEXUS_PLUGIN_GUID_FORMELEMENTSMENU, $pluginParams );
 
@@ -86,7 +86,7 @@ function write_form_menu_cache( $pMenuHash ) {
 				}
 				if ( $pMenuHash->mInfo['menu_type'] == 'qdd' ) {
 					$data .= '<option value="">'.$pMenuHash->mInfo['title'].'</option>' ;
-				} 
+				}
 			} else {
 				$data .= '>';
 			}
