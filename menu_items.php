@@ -73,7 +73,7 @@ if( isset( $formfeedback ) ) {
 }
 
 // get all available perms only when the admin is visiting here.
-$tmpPerms = $gBitUser->isAdmin() ? $gBitUser->getGroupPermissions() : $gBitUser->mPerms;
+$tmpPerms = $gBitUser->isAdmin() ? $gBitUser->getRolePermissions() : $gBitUser->mPerms;
 
 $perms['no permission'][''] = 'none';
 foreach( $tmpPerms as $perm => $info ) {
