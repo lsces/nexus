@@ -30,7 +30,7 @@
 
 		{if $gNexus->mInfo.tree}
 			<input type="hidden" name="menu_id" value="{$gNexus->mInfo.menu_id}" />
-			<input type="image" src="{biticon ipackage="icons" iname="edit-delete" ipackage="icons" iexplain='remove item' url=TRUE}" title="remove selected items" style="float:right" />
+			<input type="image" src="{biticon ipackage="icons" iname="user-trash" ipackage="icons" iexplain='remove item' url=TRUE}" title="remove selected items" style="float:right" />
 		{/if}
 	{/form}
 {/if}
