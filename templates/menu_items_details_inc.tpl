@@ -8,7 +8,7 @@
 				<li>
 					<div class="{cycle values='even,odd'}">
 						{html_checkboxes values=$item.item_id name=remove_item id="item_`$item.item_id`" style="float:right;"}
-						<a href="{$smarty.const.NEXUS_PKG_URL}menu_items.php?menu_id={$item.menu_id}&amp;item_id={$item.item_id}">{biticon ipackage="icons" iname="document-properties" ipackage="icons" iexplain="edit item" style="float:right" iforce=icon}</a>
+						<a href="{$smarty.const.NEXUS_PKG_URL}menu_items.php?menu_id={$item.menu_id}&amp;item_id={$item.item_id}">{biticon ipackage="icons" iname="edit" ipackage="icons" iexplain="edit item" style="float:right" iforce=icon}</a>
 
 						<label for="item_{$item.item_id}">
 							<strong>{$item.title|escape}</strong>
