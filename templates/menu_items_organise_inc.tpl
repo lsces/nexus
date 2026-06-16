@@ -7,8 +7,8 @@
 				<a href="{$smarty.const.NEXUS_PKG_URL}menu_items.php?sort_menu={$menuId}&amp;menu_id={$item.menu_id}&amp;item_id={$item.item_id}&amp;tab=edit">{biticon ipackage="icons" iname="edit"  iforce=icon ipackage="icons"  iexplain="edit item" style="float:right"}</a>
 
 				<a href="{$smarty.const.NEXUS_PKG_URL}menu_sort.php?sort_menu={$menuId}&amp;menu_id={$item.menu_id}&amp;item_id={$item.item_id}&amp;move_item=e&amp;tab=organise">{biticon iforce=icon ipackage="icons" iname="go-next" iexplain="move right" style="float:right"}</a>
-				<a href="{$smarty.const.NEXUS_PKG_URL}menu_sort.php?sort_menu={$menuId}&amp;menu_id={$item.menu_id}&amp;item_id={$item.item_id}&amp;move_item=s&amp;tab=organise">{biticon ipackage="icons" iname="network-receive"  iforce=icon ipackage="icons"  iexplain="move down" style="float:right"}</a>
-				<a href="{$smarty.const.NEXUS_PKG_URL}menu_sort.php?sort_menu={$menuId}&amp;menu_id={$item.menu_id}&amp;item_id={$item.item_id}&amp;move_item=n&amp;tab=organise">{biticon ipackage="icons" iname="network-transmit"  iforce=icon ipackage="icons"  iexplain="move up" style="float:right"}</a>
+				<a href="{$smarty.const.NEXUS_PKG_URL}menu_sort.php?sort_menu={$menuId}&amp;menu_id={$item.menu_id}&amp;item_id={$item.item_id}&amp;move_item=s&amp;tab=organise">{biticon ipackage="icons" iname="go-down"  iforce=icon ipackage="icons"  iexplain="move down" style="float:right"}</a>
+				<a href="{$smarty.const.NEXUS_PKG_URL}menu_sort.php?sort_menu={$menuId}&amp;menu_id={$item.menu_id}&amp;item_id={$item.item_id}&amp;move_item=n&amp;tab=organise">{biticon ipackage="icons" iname="go-up"  iforce=icon ipackage="icons"  iexplain="move up" style="float:right"}</a>
 				<a href="{$smarty.const.NEXUS_PKG_URL}menu_sort.php?sort_menu={$menuId}&amp;menu_id={$item.menu_id}&amp;item_id={$item.item_id}&amp;move_item=w&amp;tab=organise">{biticon ipackage="icons" iname="go-previous"  iforce=icon ipackage="icons"  iexplain="move left" style="float:right"}</a>
 
 				{$item.title|escape}
